@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cw0kg6ff4fycb"]
+
+[ext_resource type="Script" uid="uid://dwf6su386cba7" path="res://scripts/enemy_mage.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://clr5eexcb80nx" path="res://assets/enemies/Skeleton_Mage.glb" id="2_mage"]
+[ext_resource type="PackedScene" uid="uid://cj3toh7vg1wxr" path="res://assets/weapons/Skeleton_Staff.gltf" id="3_staff"]
+[ext_resource type="PackedScene" path="res://scenes/mage_bullet.tscn" id="4_bullet"]
+[ext_resource type="AudioStream" uid="uid://qdiwvx7s7uqe" path="res://assets/audio/Firespray 1.ogg" id="5_death"]
+[ext_resource type="AnimationLibrary" uid="uid://bvvkrxd6qe4bs" path="res://assets/enemies/animations/Rig_Medium_MovementBasic.glb" id="6_anim"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mage"]
+size = Vector3(1, 1.5, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=189977403]
+script = ExtResource("1_script")
+bullet_scene = ExtResource("4_bullet")
+death_sound = ExtResource("5_death")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1668188392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_mage")
+
+[node name="Body" parent="." unique_id=1261374450 instance=ExtResource("2_mage")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/Rig_Medium" parent_id_path=PackedInt32Array(1261374450, 1592155065) index="0" unique_id=30105886]
+bones/1/position = Vector3(0, 0.39206383, 0)
+bones/2/position = Vector3(-0.17094505, 0.11358726, 1.3923275e-08)
+bones/2/rotation = Quaternion(0.9958909, 1.3462449e-07, -2.7306665e-08, 0.09056074)
+bones/3/rotation = Quaternion(0.2913201, -6.604816e-08, 2.0231164e-07, 0.95662564)
+bones/4/rotation = Quaternion(-0.55491084, 1.9804872e-07, -7.8918305e-08, 0.8319099)
+bones/5/rotation = Quaternion(-4.879908e-09, 0.92023516, -0.39136574, 5.328422e-08)
+bones/9/rotation = Quaternion(-0.58795244, -0.10844585, -0.645398, 0.47540814)
+bones/10/rotation = Quaternion(2.1184832e-08, -5.03675e-08, -0.4973854, 0.86752975)
+bones/12/rotation = Quaternion(-0.31667742, -0.34757897, 0.22899799, 0.8523287)
+bones/13/rotation = Quaternion(-3.58774e-09, 6.9489703e-09, -0.7071068, 0.7071067)
+bones/14/rotation = Quaternion(-0.5802813, 0.15828462, 0.66605324, 0.44112664)
+bones/15/rotation = Quaternion(9.095458e-09, 4.8284473e-08, 0.42497087, 0.9052071)
+bones/17/rotation = Quaternion(-0.35023588, 0.29147267, -0.1967616, 0.86813796)
+bones/18/rotation = Quaternion(-9.535865e-10, -4.3147668e-09, 0.7071068, 0.7071067)
+bones/19/position = Vector3(0.17094505, 0.11358726, 1.3923275e-08)
+bones/19/rotation = Quaternion(0.9958909, -1.2840718e-07, -1.6118022e-08, 0.09056074)
+bones/20/rotation = Quaternion(0.2913201, 6.604815e-08, -2.0231167e-07, 0.95662564)
+bones/21/rotation = Quaternion(-0.55491084, -3.3250753e-08, 7.4074116e-09, 0.8319099)
+bones/22/rotation = Quaternion(3.4523623e-08, 0.92023516, -0.39136574, 7.0025166e-08)
+
+[node name="head" parent="Body/Rig_Medium/Skeleton3D" index="0" unique_id=112991886]
+transform = Transform3D(1, 0, 1.4210854e-14, 0, 0.99999994, 0, -1.4210854e-14, 0, 1, 0, 1.2278259, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body" unique_id=864894077]
+libraries/Rig_Medium_MovementBasic = ExtResource("6_anim")
+
+[node name="Staff" parent="." unique_id=856626658 instance=ExtResource("3_staff")]
+transform = Transform3D(0.011991753, 0.009370208, 0.9998842, -0.9999245, -0.002563799, 0.012016263, 0.0026760986, -0.9999528, 0.009338766, 0.56367624, 1.2614298, -1.0020597)
+
+[node name="Muzzle" type="Marker3D" parent="." unique_id=920745416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.5, -0.7)
+
+[editable path="Body"]

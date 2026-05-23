@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://scenes/heart_icon.tscn" id="2_heart"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="WaveLabel" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 480.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 48
+text = "Wave: 0"
+
+[node name="HeartsContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 16.0
+offset_right = 280.0
+offset_bottom = 128.0
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="Heart1" parent="HeartsContainer" instance=ExtResource("2_heart")]
+
+[node name="Heart2" parent="HeartsContainer" instance=ExtResource("2_heart")]
+
+[node name="Heart3" parent="HeartsContainer" instance=ExtResource("2_heart")]
+
+[node name="Heart4" parent="HeartsContainer" instance=ExtResource("2_heart")]
+
+[node name="Heart5" parent="HeartsContainer" instance=ExtResource("2_heart")]
+
+[node name="KillsLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -480.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 48
+text = "Kills: 0"
+horizontal_alignment = 2
+
+[node name="CenterLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -120.0
+offset_right = 500.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 96
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowerUpLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -100.0
+offset_right = 600.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(1, 0.65, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 44
+text = ""
+vertical_alignment = 1
+
+[node name="GameOverMenu" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="GameOverMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.07, 0.09, 0.07, 0.85)
+mouse_filter = 2
+
+[node name="Center" type="CenterContainer" parent="GameOverMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="GameOverMenu/Center"]
+custom_minimum_size = Vector2(560, 0)
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Title" type="Label" parent="GameOverMenu/Center/VBox"]
+theme_override_colors/font_color = Color(0.95, 0.4, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 96
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="GameOverMenu/Center/VBox"]
+custom_minimum_size = Vector2(0, 32)
+
+[node name="RestartButton" type="Button" parent="GameOverMenu/Center/VBox"]
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 48
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="GameOverMenu/Center/VBox"]
+custom_minimum_size = Vector2(0, 80)
+theme_override_font_sizes/font_size = 48
+text = "QUIT"

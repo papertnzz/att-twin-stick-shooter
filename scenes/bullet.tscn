@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cxjfp6sub26vp"]
+
+[ext_resource type="Script" uid="uid://dk0g7ndfwj66e" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="PackedScene" uid="uid://cmxwcjy1rhy3s" path="res://assets/weapons/Skeleton_Arrow.gltf" id="2_arrow"]
+[ext_resource type="AudioStream" uid="uid://dwbtsu7gpfq6u" path="res://assets/audio/Firebuff 1.ogg" id="2_l5glv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eoqba"]
+radius = 0.2
+
+[node name="Bullet" type="Area3D" unique_id=1608754678]
+script = ExtResource("1_mkf8s")
+hit_sound = ExtResource("2_l5glv")
+hit_volume_db = 2.5
+
+[node name="Arrow" parent="." unique_id=1783644857 instance=ExtResource("2_arrow")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=125724800]
+shape = SubResource("SphereShape3D_eoqba")

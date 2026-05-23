@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bk7xapvfpka72"]
+
+[ext_resource type="Script" uid="uid://dqhx1vtykrhyq" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="PackedScene" uid="uid://bffquid8oduxh" path="res://assets/enemies/Skeleton_Minion.glb" id="2_4ra3w"]
+[ext_resource type="AudioStream" uid="uid://qdiwvx7s7uqe" path="res://assets/audio/Firespray 1.ogg" id="2_5uy6h"]
+[ext_resource type="AnimationLibrary" uid="uid://bvvkrxd6qe4bs" path="res://assets/enemies/animations/Rig_Medium_MovementBasic.glb" id="3_5uy6h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_md0e3"]
+size = Vector3(1, 1.5, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1908493781]
+script = ExtResource("1_7p1mj")
+death_sound = ExtResource("2_5uy6h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1114554571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_md0e3")
+
+[node name="Body" parent="." unique_id=581672388 instance=ExtResource("2_4ra3w")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/Rig_Medium" parent_id_path=PackedInt32Array(581672388, 1319749646) index="0" unique_id=2117538597]
+bones/1/position = Vector3(0, 0.4371587, 0)
+bones/1/rotation = Quaternion(0.095845774, -1.1866046e-07, 1.1425705e-08, 0.9953962)
+bones/2/position = Vector3(-0.17094506, 0.11358735, -0.099999994)
+bones/2/rotation = Quaternion(0.9538545, 2.2173066e-07, 3.3896477e-09, -0.3002692)
+bones/3/rotation = Quaternion(0.3915314, -6.35308e-08, 2.719049e-07, 0.9201648)
+bones/4/rotation = Quaternion(-0.44524628, 2.920535e-07, -1.02233074e-07, 0.89540815)
+bones/5/rotation = Quaternion(8.168461e-09, 0.9203663, -0.39105743, 5.8903904e-08)
+bones/6/position = Vector3(0.17094506, 0.11358723, 0.100000046)
+bones/6/rotation = Quaternion(0.9190819, -1.639744e-08, 1.254484e-08, 0.39406648)
+bones/7/rotation = Quaternion(0.0019691067, 6.9042706e-08, -1.3675262e-09, 0.9999981)
+bones/8/rotation = Quaternion(-0.49649605, 1.7175507e-08, -9.875719e-08, 0.868039)
+bones/9/rotation = Quaternion(2.3543484e-08, 0.918349, -0.3957716, 6.4317e-08)
+bones/10/rotation = Quaternion(7.5231634e-37, 7.105427e-15, 1.0587911e-22, 1)
+bones/11/rotation = Quaternion(0.04213311, 0.0021541486, 0.011082109, 0.99904823)
+bones/12/rotation = Quaternion(-0.13049294, 0.002866565, -0.0006837016, 0.9914449)
+bones/13/position = Vector3(0.21200736, 0.124591716, -0.04908126)
+bones/13/rotation = Quaternion(-0.59904945, 0.081652515, -0.5373604, 0.5879765)
+bones/14/rotation = Quaternion(-1.7756745e-08, -6.282385e-08, -0.42743266, 0.90404725)
+bones/16/rotation = Quaternion(-0.126534, -0.3519782, -0.49310666, 0.7854592)
+bones/17/rotation = Quaternion(-0.054505434, 0.054505393, -0.5391622, 0.838667)
+bones/18/position = Vector3(-0.18637733, 0.11175979, -0.04215817)
+bones/18/rotation = Quaternion(-0.5838075, 0.34844056, 0.67395025, 0.28904858)
+bones/19/rotation = Quaternion(3.320162e-08, 6.1119046e-08, 0.56677157, 0.82387507)
+bones/21/rotation = Quaternion(0.008697546, 0.3960501, -0.17517336, 0.9013229)
+bones/22/rotation = Quaternion(-0.054505423, -0.054505408, 0.5391622, 0.838667)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body" unique_id=1449592486]
+libraries/Rig_Medium_MovementBasic = ExtResource("3_5uy6h")
+
+[editable path="Body"]

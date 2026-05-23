@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cmxwpu7yqv4hv"]
+
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_pu"]
+[ext_resource type="PackedScene" path="res://assets/weapons/Skeleton_Quiver.gltf" id="2_quiver"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pu"]
+height = 1.0
+radius = 0.7
+
+[node name="PowerUp" type="Area3D"]
+script = ExtResource("1_pu")
+
+[node name="Quiver" parent="." instance=ExtResource("2_quiver")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_pu")

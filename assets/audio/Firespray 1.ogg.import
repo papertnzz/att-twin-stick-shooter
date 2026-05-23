@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://qdiwvx7s7uqe"
+path="res://.godot/imported/Firespray 1.ogg-4ae533a6e8de7471a012082830eb65e6.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Firespray 1.ogg"
+dest_files=["res://.godot/imported/Firespray 1.ogg-4ae533a6e8de7471a012082830eb65e6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

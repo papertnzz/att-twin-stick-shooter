@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://blcdbd17j7gkl"]
+
+[ext_resource type="Script" uid="uid://dqhx1vtykrhyq" path="res://scripts/enemy.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://6d8368cug1v4" path="res://assets/enemies/Skeleton_Warrior.glb" id="2_warrior"]
+[ext_resource type="AudioStream" uid="uid://qdiwvx7s7uqe" path="res://assets/audio/Firespray 1.ogg" id="3_death"]
+[ext_resource type="AnimationLibrary" uid="uid://bvvkrxd6qe4bs" path="res://assets/enemies/animations/Rig_Medium_MovementBasic.glb" id="4_anim"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_warrior"]
+size = Vector3(1, 1.5, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=133407933]
+script = ExtResource("1_script")
+max_health = 5
+death_sound = ExtResource("3_death")
+power_up_drop_chance = 0.25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=987757090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_warrior")
+
+[node name="Body" parent="." unique_id=650919801 instance=ExtResource("2_warrior")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body" unique_id=401632046]
+libraries/Rig_Medium_MovementBasic = ExtResource("4_anim")
+
+[editable path="Body"]

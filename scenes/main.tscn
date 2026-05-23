@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://bpwdn7ymnnm1a"]
+
+[ext_resource type="PackedScene" uid="uid://duablemobyqfi" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bk7xapvfpka72" path="res://scenes/enemy.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" path="res://scenes/enemy_warrior.tscn" id="2_warrior"]
+[ext_resource type="PackedScene" path="res://scenes/enemy_mage.tscn" id="2_mage"]
+[ext_resource type="Script" uid="uid://dfegxhxwfjeat" path="res://scripts/wave_spawner.gd" id="2_sugp2"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="4_jyhfs"]
+[ext_resource type="AudioStream" path="res://assets/audio/Action 2.ogg" id="5_music"]
+[ext_resource type="Script" path="res://scripts/camera_follow.gd" id="6_camera"]
+[ext_resource type="Texture2D" path="res://assets/floor/planks.png" id="7_planks"]
+[ext_resource type="Texture2D" path="res://assets/walls/cobblestone.png" id="8_cobble"]
+[ext_resource type="Texture2D" path="res://assets/walls/cobblestoneAlternative.png" id="9_cobble_alt"]
+[ext_resource type="PackedScene" path="res://assets/walls/wall-flat-gate.glb" id="10_gate"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+albedo_texture = ExtResource("7_planks")
+uv1_scale = Vector3(8, 8, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
+albedo_texture = ExtResource("8_cobble")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
+albedo_texture = ExtResource("9_cobble_alt")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+roughness = 0.9
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jyhfs"]
+sky_top_color = Color(0.2901961, 0.61960787, 1, 1)
+sky_horizon_color = Color(0.65882355, 0.84705883, 1, 1)
+ground_bottom_color = Color(0.8627451, 0.7882353, 0.6392157, 1)
+
+[sub_resource type="Sky" id="Sky_tbgi4"]
+sky_material = SubResource("ProceduralSkyMaterial_jyhfs")
+
+[sub_resource type="Environment" id="Environment_tefeu"]
+background_mode = 2
+sky = SubResource("Sky_tbgi4")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+
+[node name="Main" type="Node3D" unique_id=1196535398]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=60773977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, -30, 0)
+light_energy = 2.5
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=777068611]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 12, 8)
+current = true
+script = ExtResource("6_camera")
+target_path = NodePath("../Player")
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1251650601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(40, 1, 40)
+material = SubResource("StandardMaterial3D_jyhfs")
+
+[node name="Wall_N_left" type="CSGBox3D" parent="." unique_id=1843794969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 1, -20)
+size = Vector3(17, 2, 1)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Gate_N" parent="." instance=ExtResource("10_gate")]
+transform = Transform3D(6, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="Wall_N_right" type="CSGBox3D" parent="." unique_id=848016495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 1, -20)
+size = Vector3(17, 2, 1)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Wall_S_left" type="CSGBox3D" parent="." unique_id=116905528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 1, 20)
+size = Vector3(17, 2, 1)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Gate_S" parent="." instance=ExtResource("10_gate")]
+transform = Transform3D(-6, 0, 0, 0, 2, 0, 0, 0, -1, 0, 0, 20)
+
+[node name="Wall_S_right" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 1, 20)
+size = Vector3(17, 2, 1)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Wall_E_top" type="CSGBox3D" parent="." unique_id=1138110219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -11.5)
+size = Vector3(1, 2, 17)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Gate_E" parent="." instance=ExtResource("10_gate")]
+transform = Transform3D(0, 0, 6, 0, 2, 0, -1, 0, 0, 20, 0, 0)
+
+[node name="Wall_E_bottom" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 11.5)
+size = Vector3(1, 2, 17)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Wall_W_top" type="CSGBox3D" parent="." unique_id=1834957595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -11.5)
+size = Vector3(1, 2, 17)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Gate_W" parent="." instance=ExtResource("10_gate")]
+transform = Transform3D(0, 0, -6, 0, 2, 0, 1, 0, 0, -20, 0, 0)
+
+[node name="Wall_W_bottom" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 11.5)
+size = Vector3(1, 2, 17)
+material = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Player" parent="." unique_id=990288965 instance=ExtResource("1_o5qli")]
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=36173247]
+
+[node name="Spawn_N" type="Marker3D" parent="SpawnPoints" unique_id=851925065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18)
+
+[node name="Spawn_E" type="Marker3D" parent="SpawnPoints" unique_id=1152804958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+
+[node name="Spawn_W" type="Marker3D" parent="SpawnPoints" unique_id=207029401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="WaveSpawner" type="Node" parent="." unique_id=2058393299]
+script = ExtResource("2_sugp2")
+enemy_scene = ExtResource("2_0wfyh")
+warrior_scene = ExtResource("2_warrior")
+warrior_min_wave = 2
+mage_scene = ExtResource("2_mage")
+mage_min_wave = 3
+mixed_min_wave = 4
+spawn_points_parent = NodePath("../SpawnPoints")
+
+[node name="HUD" parent="." unique_id=157022831 instance=ExtResource("4_jyhfs")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_music")
+autoplay = true
+volume_db = -8.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=397288017]
+environment = SubResource("Environment_tefeu")
